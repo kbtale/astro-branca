@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  imageUrl: string;
+}
+
+const { title, body, imageUrl } = Astro.props;
+---
+
+<div class="neumorph">
+  <img src={imageUrl} alt="Card Image" class="neumorph-image" />
+  <div class="neumorph-content">
+    <h2>{title}</h2>
+    <p>{body}</p>
+  </div>
+</div>
+
+<style is:global>
+  .neumorph {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #333;
+    color: #feeeee;
+    box-shadow: inset 3px 3px 5px #141414, inset -7px -7px 12px #212121;
+    transition: all 0.2s ease-in-out;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 3rem 1rem 3rem;
+  }
+
+  .neumorph-image {
+    width: 20vh;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+
+  .neumorph-content {
+    flex: 1;
+  }
+
+  .neumorph h2 {
+    margin: 0 0 8px;
+    font-size: 1.5rem;
+  }
+
+  .neumorph p {
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .neumorph {
+      flex-direction: column;
+    }
+
+    .neumorph-image {
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
+  }
+</style>
