@@ -15,7 +15,13 @@ const cardData = {
 	<main class="squad">
 		<div class="row">
 			<h2>Nuestra Plantilla</h2>
-			
+			<div class="silhouettes">
+				<img src="/gk.svg" alt="" class="silhouette gk">
+				<img src="/def.svg" alt="" class="silhouette def">
+				<img src="/mid.svg" alt="" class="silhouette mid">
+				<img src="/fw.svg" alt="" class="silhouette fw">
+				<img src="/mgr.svg" alt="" class="silhouette mgr">
+			</div>
 		</div>
 		<ul role="list" class="link-card-grid">
 			<Card
@@ -129,6 +135,46 @@ const cardData = {
 		justify-content: center;
 		align-items: center;
 	}
+
+	.row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		min-width: 100%;
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+
+	.silhouettes {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: space-evenly;
+		width: 45%;
+	}
+	.silhouettes > .silhouette {
+		height: 5rem;
+		cursor: pointer;
+		transition: all .5 cubic-bezier(0.23, 1, 0.320, 1);
+	}
+	.silhouettes > .silhouette:hover {
+		transform: scale(1.1);
+	}
+	.silhouettes > .gk:hover {
+		filter: brightness(0) saturate(100%) invert(89%) sepia(27%) saturate(2571%) hue-rotate(3deg) brightness(92%) contrast(101%);
+	}
+	.silhouettes > .def:hover {
+		filter: brightness(0) saturate(100%) invert(30%) sepia(97%) saturate(3550%) hue-rotate(196deg) brightness(96%) contrast(101%);
+	}
+	.silhouettes > .mid:hover {
+		filter: brightness(0) saturate(100%) invert(59%) sepia(97%) saturate(3595%) hue-rotate(79deg) brightness(98%) contrast(104%);
+	}
+	.silhouettes > .fw:hover {
+		filter: brightness(0) saturate(100%) invert(19%) sepia(99%) saturate(6426%) hue-rotate(358deg) brightness(86%) contrast(111%);
+	}
+	.silhouettes > .mgr:hover {
+		filter: brightness(0) saturate(100%) invert(14%) sepia(97%) saturate(4527%) hue-rotate(276deg) brightness(73%) contrast(120%);
+	}
+
 	.astro-a {
 		position: absolute;
 		top: -32px;
