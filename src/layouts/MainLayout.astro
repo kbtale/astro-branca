@@ -19,6 +19,12 @@ const { title } = Astro.props;
 	<body>
 		<div class="navbar" id="Navbar">
 				<img src="/dark_logo.png" class="logo" alt="Logo" id="NavbarLogo">
+				<ul class="social-media">
+					<li><a class="twitch" href="https://www.twitch.tv/bbell00"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#000" d="M11.64 5.93h1.43v4.28h-1.43m3.93-4.28H17v4.28h-1.43M7 2L3.43 5.57v12.86h4.28V22l3.58-3.57h2.85L20.57 12V2m-1.43 9.29l-2.85 2.85h-2.86l-2.5 2.5v-2.5H7.71V3.43h11.43Z"/></svg></a></li>
+					<li><a class="youtube" href="https://www.youtube.com/@Bbell00_/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 180"><path fill="#000" d="M250.346 28.075A32.18 32.18 0 0 0 227.69 5.418C207.824 0 127.87 0 127.87 0S47.912.164 28.046 5.582A32.18 32.18 0 0 0 5.39 28.24c-6.009 35.298-8.34 89.084.165 122.97a32.18 32.18 0 0 0 22.656 22.657c19.866 5.418 99.822 5.418 99.822 5.418s79.955 0 99.82-5.418a32.18 32.18 0 0 0 22.657-22.657c6.338-35.348 8.291-89.1-.164-123.134"/><path fill="#fff" d="m102.421 128.06l66.328-38.418l-66.328-38.418z"/></svg></a></li>
+					<li><a class="instagram" href="https://www.instagram.com/brancafutbol_sa/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#000" d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3"/></svg></a></li>
+					<li><a class="tiktok" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#000" d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48"/></svg></a></li>
+				</ul>
 		</div>
 		<div class="banner" id="Banner">
 			<div class="bannerText">
@@ -155,17 +161,18 @@ const { title } = Astro.props;
 	}
       .navbar {
         position: fixed;
+		box-sizing: border-box;
         top: 0;
         left: 0;
         width: 100%;
-        height: 60px;
         background-color: #333;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         color: white;
         transform: translateY(-100%);
         transition: transform 0.3s ease-in-out;
+		padding: 1rem;
 		z-index: 99;
       }
       .navbar.visible {
@@ -173,10 +180,6 @@ const { title } = Astro.props;
       }
 	  .navbar .logo {
 		width: 100px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
 		transition: transform 0.3s ease-in-out;
 	}
 
@@ -206,4 +209,66 @@ const { title } = Astro.props;
 			transform: translate(-50%, calc(var(--parallax-speed) * 10vw));
 		}
 	}
+
+/* SOCIAL MEDIA */
+.social-media {
+  margin:0;
+  padding:0;
+  display:flex;
+}
+
+.social-media li {
+  list-style: none;
+}
+
+.social-media li a {
+  position: relative;
+  width:3rem;
+  height:3rem;
+  display:flex;
+  text-align:center;
+  justify-content: center;
+  margin:0 10px;
+  border-radius: 50%;
+  padding: 6px;
+  box-sizing: border-box;
+  text-decoration:none;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  background: linear-gradient(0deg, #ddd, #fff);
+  transition: .5s;
+}
+
+.social-media li a:hover {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  text-decoration:none;
+  transform: scale(1.1);
+}
+
+.social-media li a svg {
+  width: 2rem;
+  display:block;
+  background: linear-gradient(0deg, #fff, #ddd);
+  border-radius: 50%;
+  line-height: calc(60px - 12px);
+  font-size:24px;
+  color: #262626;
+  transition: .5s;
+  fill: black;
+}
+
+.social-media li:nth-child(1) a:hover svg path {
+  fill: #6441a5;
+}
+
+.social-media li:nth-child(2) a:hover svg path:nth-child(1) {
+  fill: #FF0000;
+}
+
+.social-media li:nth-child(3) a:hover svg path {
+  fill: #C13584;
+}
+
+.social-media li:nth-child(4) a:hover svg path {
+  fill: #000000;
+}
 </style>

@@ -1,0 +1,135 @@
+---
+interface Props {
+  videos: { id: string; title: string }[];
+}
+
+const { videos } = Astro.props;
+---
+
+<div class="carousel">
+    <div class="carousel-track-container">
+        <ul class="carousel-track">
+            {videos.map(video => (
+                <li class="carousel-slide">
+                    <iframe
+                        width="560"
+                        height="315"
+                        src={`https://www.youtube.com/embed/${video.id}`}
+                        title={video.title}
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+                </li>
+            ))}
+        </ul>
+    </div>
+    <button class="carousel-button carousel-button--left">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 18L9 12L15 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+  </button>
+  <button class="carousel-button carousel-button--right">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 18L15 12L9 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+  </button>
+  
+</div>
+
+<style>
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-track-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #333;
+    border: none;
+    stroke: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 20%;
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    transition: all 0.3s ease;
+}
+
+.carousel-button--left {
+    left: 10vw;
+}
+
+.carousel-button--right {
+    right: 10vw;
+}
+
+.carousel-button:hover {
+    transform: scale();
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-button--right');
+    const prevButton = document.querySelector('.carousel-button--left');
+    const slideWidth = slides[0].getBoundingClientRect().width;
+
+    // Arrange the slides next to one another
+    slides.forEach((slide, index) => {
+        slide.style.left = slideWidth * index + 'px';
+    });
+
+    const moveToSlide = (track, currentSlide, targetSlide) => {
+        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+        currentSlide.classList.remove('current-slide');
+        targetSlide.classList.add('current-slide');
+    };
+
+    // When I click left, move slides to the left
+    prevButton.addEventListener('click', () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
+
+        moveToSlide(track, currentSlide, prevSlide);
+    });
+
+    // When I click right, move slides to the right
+    nextButton.addEventListener('click', () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling || slides[0];
+
+        moveToSlide(track, currentSlide, nextSlide);
+    });
+
+    // Set the first slide as the current slide
+    slides[0].classList.add('current-slide');
+});
+
+</script>
